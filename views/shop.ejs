@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('./includes/header-part.ejs') %>
+	</head>
+	<body>
+		<%- include('./includes/navigation.ejs') %>
+		<div class="products shop">
+			<% prods.forEach((prod) => {%>
+			<div class="product">
+				<span class="product-title"> <%= prod.title %> </span>
+				<img src="<%= prod.image %>" width="120" height="150" alt="<%= prod.title %>" />
+				<span>$<%= prod.price %></span>
+				<span>$<%= prod.description %></span>
+				<div class="product-actions">
+					<a href="/shop/products/<%= prod.id %>">View Details</a>
+				</div>
+			</div>
+			<% }) %>
+		</div>
+	</body>
+</html>
+

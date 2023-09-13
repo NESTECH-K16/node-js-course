@@ -1,0 +1,41 @@
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+}
+
+:root {
+	font-family: 'Roboto', sans-serif;
+}
+
+body {
+	background-color: #e0e1e2;
+}
+nav ul {
+	display: flex;
+	gap: 2rem;
+	align-items: center;
+	list-style: none;
+	background-color: #6fdf4bed;
+	padding: 1rem;
+}
+nav ul li a:link,
+nav ul li a:active {
+	font-size: 1.2rem;
+	line-height: 24px;
+	text-decoration: none;
+	transition: all 0.3s ease;
+	color: #232323;
+	font-weight: 500;
+	text-transform: uppercase;
+}
+nav ul li a.active {
+	color: #ff7b00;
+}
+
+nav ul li a:hover,
+nav ul li a:focus {
+	color: #ff7b00;
+}
+

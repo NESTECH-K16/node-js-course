@@ -1,14 +1,19 @@
 const path = require('path')
 const express = require('express') //common js import
-const app = express()
+const { engine } = require('express-handlebars')
+
 const bodyParser = require('body-parser')
-const fs = require('fs')
 const adminRoutes = require('./routes/admin')
 const shopRoutes = require('./routes/shop')
 
+const app = express()
+
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, 'public')))
-app.set('view engine', 'pug')
+
+// app.engine('.hbs', engine({ extname: '.hbs', defaultLayout: false }))
+app.set('view engine', 'ejs')
+app.set('views', path.join(__dirname, 'views'))
 
 app.use('/admin', adminRoutes.router)
 app.use('/shop', shopRoutes.router)

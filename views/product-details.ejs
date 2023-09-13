@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('./includes/header-part.ejs') %>
+	</head>
+	<body>
+		<%- include('./includes/navigation.ejs') %>
+		<div class="products shop">
+			<div class="product details">
+				<div class="product-image">
+					<img src="<%= prod.image %>" width="120" height="150" alt="<%= prod.title %>" />
+				</div>
+				<div class="product-info">
+					<div class="flex">
+						<span>Product Name</span>
+						<span><%= prod.title %></span>
+					</div>
+					<div class="flex">
+						<span>Product Price:</span>
+						<span>$<%= prod.price %></span>
+					</div>
+
+					<div class="flex description">
+						<span>Descriptions:</span>
+						<span>$<%= prod.description %></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
