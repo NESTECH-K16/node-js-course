@@ -7,7 +7,7 @@
     <%- include('./includes/navigation.ejs') %>
     <div class="product-form">
       <h1 class="product-form__title"><%= pageTitle %></h1>
-      <form action="/admin/edit-product" method="POST">
+      <form action="/admin/edit-product?_method=PUT" method="POST">
         <input type="hidden" name="id" value="<%= prod.id %>" />
         <div class="product-form__control">
           <label for="name">Product Name:</label>

@@ -14,10 +14,10 @@ const router = express.Router()
 router.get('/products', getProducts)
 router.get('/add-product', addProductView)
 router.post('/add-product', addProduct)
-router.post('/products/delete/', deleteProduct)
+router.delete('/products/delete/', deleteProduct)
 // edit product view
 router.get('/products/edit/:productId', editProductView)
 // edit product
-router.post('/edit-product', editProduct)
+router.put('/edit-product', editProduct)
 
 exports.router = router

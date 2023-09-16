@@ -1,6 +1,7 @@
 const path = require('path')
 const express = require('express') //common js import
 const { engine } = require('express-handlebars')
+const methodOverride = require('method-override')
 
 const bodyParser = require('body-parser')
 const adminRoutes = require('./routes/admin')
@@ -10,6 +11,8 @@ const app = express()
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, 'public')))
+// override method put delete
+app.use(methodOverride('_method'))
 
 // app.engine('.hbs', engine({ extname: '.hbs', defaultLayout: false }))
 app.set('view engine', 'ejs')
@@ -19,12 +22,12 @@ app.use('/admin', adminRoutes.router)
 app.use('/shop', shopRoutes.router)
 
 app.get('/', (req, res, next) => {
-	console.log('home')
-	res.send('<h1>Home Page</h1>')
+  console.log('home')
+  res.send('<h1>Home Page</h1>')
 })
 
 app.use('', (req, res, next) => {
-	res.status(404).send('<h1>Page not found!</h1>')
+  res.status(404).send('<h1>Page not found!</h1>')
 })
 
 // const server = http.createServer((req, res) => {
@@ -81,4 +84,3 @@ app.use('', (req, res, next) => {
 // })
 
 app.listen(3000)
-

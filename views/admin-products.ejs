@@ -11,9 +11,9 @@
 				<span class="product-title"> <%= prod.title %> </span>
 				<img src="<%= prod.image %>" width="120" height="150" alt="<%= prod.title %>" />
 				<span>$<%= prod.price %></span>
-				<span>$<%= prod.description %></span>
+				<span><%= prod.description %></span>
 				<div class="product-actions">
-					<form action="/admin/products/delete" method="POST">
+					<form action="/admin/products/delete?_method=DELETE" method="POST">
 						<input type="hidden" name="id" value="<%= prod.id %>" />
 						<button>Delete</button>
 					</form>
