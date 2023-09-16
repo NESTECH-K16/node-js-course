@@ -1,1 +1,9 @@
-[{"id":0.14145104909669093,"title":"Tai nghe Sony","price":"20","description":"Tai nghe HyperX Cloud Core 7.1 là tai nghe máy tính mới của nhà Hyper. Dòng Cloud Core luôn ghi dấu ấn trong lòng người dùng bởi chất lượng âm thanh tuyệt vời, người chơi sẽ đắm chìm vào những thanh âm trong trẻo sống động. HyperX Cloud Core 7.1 chính là chân ái cho game thủ.","image":"https://xgear.net/wp-content/uploads/2023/01/Cloud_earbuds_1_compressed.jpg"}]
+[
+  {
+    "id": "1",
+    "title": "Tai nghe Sony",
+    "price": "200",
+    "description": "Tai nghe HyperX Cloud Core 7.1 là tai nghe máy tính mới của nhà Hyper. Dòng Cloud Core luôn ghi dấu ấn trong lòng người dùng bởi chất lượng âm thanh tuyệt vời, người chơi sẽ đắm chìm vào những thanh âm trong trẻo sống động. HyperX Cloud Core 7.1 chính là chân ái cho game thủ.",
+    "image": "https://xgear.net/wp-content/uploads/2023/01/Cloud_earbuds_1_compressed.jpg"
+  }
+]
