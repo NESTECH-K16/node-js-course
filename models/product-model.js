@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const rootDir = require('../helpers/path')
-
+const db = require('./../helpers/database')
 exports.Product = class Product {
 	constructor(title, price, description, image, id) {
 		this.id = id
@@ -10,40 +10,61 @@ exports.Product = class Product {
 		this.description = description
 		this.image = image
 	}
-	save() {
-		try {
-			const data = fs.readFileSync(path.join(rootDir, 'database', 'product.json'))
-			const products = JSON.parse(data)
-			products.push(this)
-			fs.writeFileSync(path.join(rootDir, 'database', 'product.json'), JSON.stringify(products))
-		} catch (error) {
-			const products = []
-			products.push(this)
-			fs.writeFileSync(path.join(rootDir, 'database', 'product.json'), JSON.stringify(products))
+	save(cb) {
+		const queryStr = 'INSERT INTO products(title, price, description, image) VALUES($1, $2, $3, $4) RETURNING *'
+		const values = [this.title, this.price, this.description, this.image]
+		db.query(queryStr, values)
+			.then((result) => {
+				const { rows } = result
+				console.log(rows)
+				return cb(rows)
+			})
+			.catch((err) => {
+				console.log(err)
+			})
+	}
+
+	static getAllProducts(cb) {
+		db.query(`SELECT * from products`)
+			.then((result) => {
+				console.log(result)
+				const { rows } = result
+				return cb(rows)
+			})
+			.catch((err) => {
+				console.log(err)
+			})
+	}
+
+	static findById(id, cb) {
+		db.query('SELECT * from "products" WHERE id = $1', [id]).then((result) => {
+			return cb(result['rows'])
+		})
+	}
+
+	static deleteById(id, cb) {
+		const query = {
+			text: 'DELETE FROM "products" WHERE id= $1',
+			values: [id],
 		}
-	}
 
-	static getAllProducts() {
-		try {
-			const data = fs.readFileSync(path.join(rootDir, 'database', 'product.json'))
-			return JSON.parse(data)
-		} catch (error) {}
+		db.query(query)
+			.then((result) => {
+				cb(result.rows)
+			})
+			.catch((err) => console.log(err))
 	}
+	static editProduct(id, title, description, price, image, cb) {
+		const query = {
+			text: 'UPDATE "products" SET title = $1, description = $2, price = $3, image = $4 WHERE id = $5',
+			values: [title, description, price, image, id],
+		}
 
-	static findById(id) {
-		const products = this.getAllProducts()
-		const product = products.find((prod) => prod.id === id)
-		return product
-	}
-
-	static deleteById(id) {
-		const products = this.getAllProducts()
-		console.log(typeof id)
-		console.log('products', products)
-		const updatedProducts = products.filter((prod) => prod.id !== id)
-		try {
-			fs.writeFileSync(path.join(rootDir, 'database', 'product.json'), JSON.stringify(updatedProducts))
-		} catch (error) {}
+		db.query(query)
+			.then((result) => {
+				cb(result.rows)
+			})
+			.catch((err) => console.log(err))
 	}
 }
 

@@ -17,6 +17,9 @@
 						<input type="hidden" name="id" value="<%= prod.id %>" />
 						<button>Delete</button>
 					</form>
+
+					<a href=<%= `/admin/edit-product/${prod.id}` %> class="btn">Edit</a>
+
 				</div>
 			</div>
 			<% }) %>

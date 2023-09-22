@@ -11,7 +11,9 @@
 				<span class="product-title"> <%= prod.title %> </span>
 				<img src="<%= prod.image %>" width="120" height="150" alt="<%= prod.title %>" />
 				<span>$<%= prod.price %></span>
-				<span>$<%= prod.description %></span>
+				<span
+					><%= prod.description.length > 255 ? `${prod.description.substring(0, 256)}...` : prod.description %></span
+				>
 				<div class="product-actions">
 					<a href="/shop/products/<%= prod.id %>">View Details</a>
 				</div>
