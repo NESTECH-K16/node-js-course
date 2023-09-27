@@ -1,15 +1,17 @@
 const path = require('path')
-const { Product } = require('../models/product-model')
 const rootDir = require('../helpers/path')
+// const models = require('../models')
+// const Product = models.Product
+const { Product } = require('../models')
 
-exports.getProducts = (req, res, next) => {
-	Product.getAllProducts((products) => {
-		res.render('admin-products.ejs', {
-			prods: products,
-			pageTitle: 'Product',
-			page: 'products',
-		})
-	})
+exports.getProducts = async (req, res, next) => {
+	try {
+		const result = await Product.findAll()
+		console.log(result)
+		res.json(result)
+	} catch (error) {
+		console.log(err)
+	}
 }
 
 exports.addProduct = (req, res, next) => {
